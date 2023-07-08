@@ -28,6 +28,7 @@ public class ExpenseService {
         Expense expense = ExpenseMapper.INSTANCE.convertToExpense(request);
         User user = userService.findByIdWithControl(request.userId());
         expense.setUser(user);
+        expense.setCreatedDate(LocalDateTime.now());
         expenseRepository.save(expense);
         return expense;
     }

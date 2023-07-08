@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 /**
  * @author berkansahan
  */
@@ -28,5 +30,8 @@ public class Expense {
 
     @Column(name = "sector", length = 50, nullable = false)
     private String sector;
+
+    @Column(name = "created_date")
+    private LocalDateTime createdDate;
 
 }
