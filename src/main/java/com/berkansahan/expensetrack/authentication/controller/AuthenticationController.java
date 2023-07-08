@@ -1,6 +1,6 @@
 package com.berkansahan.expensetrack.authentication.controller;
 
-import com.berkansahan.expensetrack.authentication.security.AuthenticationService;
+import com.berkansahan.expensetrack.authentication.service.AuthenticationService;
 import com.berkansahan.expensetrack.authentication.dto.LoginRequest;
 import com.berkansahan.expensetrack.authentication.dto.LoginResponse;
 import com.berkansahan.expensetrack.authentication.dto.RegisterRequest;

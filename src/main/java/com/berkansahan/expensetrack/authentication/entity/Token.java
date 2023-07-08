@@ -1,6 +1,5 @@
 package com.berkansahan.expensetrack.authentication.entity;
 
-import com.berkansahan.expensetrack.customer.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +18,7 @@ public class Token {
 
     @Id
     @GeneratedValue
-    public Integer id;
+    public Long id;
 
     @Column(unique = true)
     public String token;

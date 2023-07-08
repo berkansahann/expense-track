@@ -1,4 +1,4 @@
-package com.berkansahan.expensetrack.customer;
+package com.berkansahan.expensetrack.authentication.entity;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

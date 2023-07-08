@@ -1,6 +1,7 @@
-package com.berkansahan.expensetrack.authentication.security;
+package com.berkansahan.expensetrack.authentication.config;
 
 import com.berkansahan.expensetrack.authentication.entity.TokenRepository;
+import com.berkansahan.expensetrack.authentication.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

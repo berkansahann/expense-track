@@ -1,14 +1,13 @@
-package com.berkansahan.expensetrack.authentication.security;
+package com.berkansahan.expensetrack.authentication.service;
 
 import com.berkansahan.expensetrack.authentication.dto.LoginRequest;
 import com.berkansahan.expensetrack.authentication.dto.LoginResponse;
 import com.berkansahan.expensetrack.authentication.dto.RegisterRequest;
-import com.berkansahan.expensetrack.customer.UserRole;
 import com.berkansahan.expensetrack.authentication.entity.Token;
 import com.berkansahan.expensetrack.authentication.entity.TokenType;
-import com.berkansahan.expensetrack.customer.User;
+import com.berkansahan.expensetrack.authentication.entity.User;
 import com.berkansahan.expensetrack.authentication.entity.TokenRepository;
-import com.berkansahan.expensetrack.customer.UserRepository;
+import com.berkansahan.expensetrack.authentication.entity.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,11 +36,10 @@ public class AuthenticationService {
      */
     public LoginResponse register(RegisterRequest request) {
         var user = User.builder()
-                .firstName(request.getFirstName())
-                .lastName(request.getLastName())
+                .firstName(request.getFirstname())
+                .lastName(request.getLastname())
                 .email(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
-                .userRole(UserRole.ROLE_USER)
                 .build();
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);

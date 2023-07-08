@@ -1,13 +1,11 @@
-package com.berkansahan.expensetrack.customer;
+package com.berkansahan.expensetrack.authentication.entity;
 
-import com.berkansahan.expensetrack.authentication.entity.Token;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -25,22 +23,27 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(generator = "User", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name = "User", sequenceName = "user_id_seq", allocationSize = 1)
+    private Long id;
+
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
+
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
+
     @Column(unique = true)
     private String email;
+
     private String password;
-    @Enumerated(EnumType.STRING)
-    private UserRole userRole;
 
     @OneToMany(mappedBy = "user")
     private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(userRole.name()));
+        return null;
     }
 
     @Override

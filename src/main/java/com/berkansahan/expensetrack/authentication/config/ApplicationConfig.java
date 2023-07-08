@@ -1,6 +1,6 @@
 package com.berkansahan.expensetrack.authentication.config;
 
-import com.berkansahan.expensetrack.customer.UserRepository;
+import com.berkansahan.expensetrack.authentication.entity.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

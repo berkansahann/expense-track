@@ -1,4 +1,4 @@
-package com.berkansahan.expensetrack.authentication.security;
+package com.berkansahan.expensetrack.authentication.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
