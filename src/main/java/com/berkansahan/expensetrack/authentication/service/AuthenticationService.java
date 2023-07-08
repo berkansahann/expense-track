@@ -36,18 +36,15 @@ public class AuthenticationService {
      */
     public LoginResponse register(RegisterRequest request) {
         var user = User.builder()
-                .firstName(request.getFirstname())
-                .lastName(request.getLastname())
-                .email(request.getEmail())
-                .password(passwordEncoder.encode(request.getPassword()))
+                .firstName(request.firstname())
+                .lastName(request.lastname())
+                .email(request.email())
+                .password(passwordEncoder.encode(request.password()))
                 .build();
         var savedUser = repository.save(user);
         var jwtToken = jwtService.generateToken(user);
         saveUserToken(savedUser, jwtToken);
-        return LoginResponse.builder()
-                .token(jwtToken)
-                .userId(savedUser.getId())
-                .build();
+        return new LoginResponse(savedUser.getId(), jwtToken);
     }
 
     /**
@@ -59,19 +56,17 @@ public class AuthenticationService {
     public LoginResponse login(LoginRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
+                        request.email(),
+                        request.password()
                 )
         );
-        var user = repository.findByEmail(request.getEmail())
+        var user = repository.findByEmail(request.email())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
-        return LoginResponse.builder()
-                .token(jwtToken)
-                .userId(user.getId())
-                .build();
+        return new LoginResponse(user.getId(), jwtToken);
+
     }
 
     /**
