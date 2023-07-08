@@ -5,5 +5,6 @@ package com.berkansahan.expensetrack.expense.dto;
  */
 public record ExpenseDTO(Long id,
                          Long userId,
-                         Double amount) {
+                         Double amount,
+                         String sector) {
 }

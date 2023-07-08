@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -19,5 +20,9 @@ public class UserService {
 
     public User findByIdWithControl(Long id) {
         return userRepository.findById(id).orElseThrow();
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 }

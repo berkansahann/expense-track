@@ -23,7 +23,10 @@ public class Expense {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private Double amount;
+
+    @Column(name = "sector", length = 50, nullable = false)
+    private String sector;
 
 }

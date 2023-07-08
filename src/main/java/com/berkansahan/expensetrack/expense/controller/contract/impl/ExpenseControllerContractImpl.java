@@ -16,7 +16,7 @@ import java.util.List;
  */
 @Service
 @RequiredArgsConstructor
-public class ExpenseControllerImpl implements ExpenseControllerContract {
+public class ExpenseControllerContractImpl implements ExpenseControllerContract {
 
     private final ExpenseService expenseService;
 
