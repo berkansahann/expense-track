@@ -31,8 +31,19 @@ public class ExpenseService {
         expenseRepository.save(expense);
         return expense;
     }
+    public void updateExpenseAmount(Expense expense){
+        expenseRepository.save(expense);
+    }
 
     public List<Expense> findByUserId(Long userId) {
         return expenseRepository.findAllByUserId(userId);
+    }
+
+    public void deleteById(Long id) {
+        expenseRepository.deleteById(id);
+    }
+
+    public Expense findByIdWithControl(Long id) {
+        return expenseRepository.findById(id).orElseThrow();
     }
 }

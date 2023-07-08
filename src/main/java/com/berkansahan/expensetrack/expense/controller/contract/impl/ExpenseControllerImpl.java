@@ -31,4 +31,26 @@ public class ExpenseControllerImpl implements ExpenseControllerContract {
         List<Expense> expenseList = expenseService.findByUserId(userId);
         return ExpenseMapper.INSTANCE.convertToExpenseDTOList(expenseList);
     }
+
+    @Override
+    public void deleteById(Long id) {
+        expenseService.deleteById(id);
+    }
+
+    @Override
+    public ExpenseDTO updateExpenseAmount(Long id, Double newAmount) {
+        Expense expense = expenseService.findByIdWithControl(id);
+        expense.setAmount(newAmount);
+        expenseService.updateExpenseAmount(expense);
+        return ExpenseMapper.INSTANCE.convertToExpenseDTO(expense);
+    }
+
+    @Override
+    public Double totalExpenseByUserId(Long userId) {
+        List<Expense> expenseList = expenseService.findByUserId(userId);
+        Double totalExpenses = expenseList.stream()
+                .mapToDouble(Expense::getAmount)
+                .sum();
+        return totalExpenses;
+    }
 }

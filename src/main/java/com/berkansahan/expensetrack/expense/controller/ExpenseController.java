@@ -26,10 +26,27 @@ public class ExpenseController  {
         return ResponseEntity.ok(expenseDTO);
     }
 
-    @GetMapping()
-    public ResponseEntity<List<ExpenseDTO>> expenseListByUserId(@RequestParam Long userId) {
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<ExpenseDTO>> expenseListByUserId(@PathVariable Long userId) {
         var expenseDTOList = expenseControllerContract.expenseListByUserId(userId);
         return ResponseEntity.ok(expenseDTOList);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteExpense(@PathVariable Long id) {
+        expenseControllerContract.deleteById(id);
+        return ResponseEntity.ok("delete is ok.");
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ExpenseDTO> updateExpenseAmount(@PathVariable Long id, @RequestParam Double newAmount) {
+       var expenseDTO = expenseControllerContract.updateExpenseAmount(id, newAmount);
+        return ResponseEntity.ok(expenseDTO);
+    }
+
+    @GetMapping("/total/{userId}")
+    public ResponseEntity<Double> getTotalExpensesByUserId(@PathVariable Long userId) {
+        Double totalExpense = expenseControllerContract.totalExpenseByUserId(userId);
+        return ResponseEntity.ok(totalExpense);
+    }
 }
